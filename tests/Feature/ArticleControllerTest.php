@@ -8,15 +8,13 @@ use Tests\TestCase;
 
 class ArticleControllerTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $response = $this->get('/');
+    use RefreshDatabase;
 
-        $response->assertStatus(200);
+    public function testIndex()
+    {
+        $response = $this->get(route('articles.index'));
+
+        $response->assertStatus(200)
+            ->assertViewIs('articles.index');
     }
 }
