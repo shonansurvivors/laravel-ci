@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      -
+      - composer install -n --no-dev --prefer-dist
+      - npm ci
+
+  build:
+    commands:
+      - npm run prod
+
+artifacts:
+  files:
+    - './**/*'
