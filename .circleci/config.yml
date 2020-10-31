@@ -50,7 +50,7 @@ jobs:
           name: php test
           command: vendor/bin/phpunit
 
-  deploy:
+  deploy_old:
     docker:
       - image: circleci/php:7.3-node-browsers
     environment:
@@ -93,7 +93,7 @@ jobs:
             --deployment-group-name laravel-ci \
             --s3-location bucket=${AWS_S3_BUCKET_NAME},key=laravel-ci.zip,bundleType=zip
 
-  deploy_tmp:
+  deploy:
     docker:
       - image: circleci/php:7.3-node-browsers
     steps:
@@ -114,13 +114,6 @@ workflows:
     jobs:
       - build
       - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - master
-      - deploy_tmp:
           requires:
             - build
           filters:
