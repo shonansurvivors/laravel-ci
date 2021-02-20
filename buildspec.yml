@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      -
+      - composer self-update --1
       - composer install -n --no-dev --prefer-dist
       - npm ci
 
